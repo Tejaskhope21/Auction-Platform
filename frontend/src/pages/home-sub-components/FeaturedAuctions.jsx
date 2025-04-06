@@ -1,18 +1,21 @@
-import Card from "@/custom-components/Card";
 import React from "react";
 import { useSelector } from "react-redux";
+import Card from "@/custom-components/Card";
+import "./FeaturedAuctions.css";
 
 const FeaturedAuctions = () => {
   const { allAuctions, loading } = useSelector((state) => state.auction);
+
   return (
-    <>
-      <section className="my-8">
-        <h3 className="text-[#111] text-xl font-semibold mb-2 min-[480px]:text-xl md:text-2xl lg:text-3xl">
-          Featured Auctions
-        </h3>
-        <div className="flex flex-wrap gap-6">
-          {allAuctions.slice(0, 8).map((element) => {
-            return (
+    <section className="featured-auctions">
+      <h3 className="featured-title">Featured Auctions</h3>
+      <div className="featured-grid">
+        {loading ? (
+          <p className="loading-text">Loading auctions...</p>
+        ) : allAuctions?.length > 0 ? (
+          allAuctions
+            .slice(0, 8)
+            .map((element) => (
               <Card
                 title={element.title}
                 imgSrc={element.image?.url}
@@ -22,11 +25,12 @@ const FeaturedAuctions = () => {
                 id={element._id}
                 key={element._id}
               />
-            );
-          })}
-        </div>
-      </section>
-    </>
+            ))
+        ) : (
+          <p className="no-auctions">No featured auctions available.</p>
+        )}
+      </div>
+    </section>
   );
 };
 

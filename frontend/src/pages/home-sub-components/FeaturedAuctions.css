@@ -1,0 +1,90 @@
+.featured-auctions {
+    margin: 2rem 0;
+    padding: 1rem;
+    width: 30%;
+    box-sizing: border-box;
+  }
+  
+  .featured-title {
+    color: #111;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+  
+  .featured-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: flex-start;
+  }
+  
+  .loading-text,
+  .no-auctions {
+    color: #666;
+    font-size: 1rem;
+    text-align: center;
+    width: 100%;
+    padding: 1rem;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 480px) {
+    .featured-auctions {
+      width: 100%; /* Full width on mobile */
+      padding: 0.75rem;
+      margin: 1rem 0;
+    }
+  
+    .featured-title {
+      font-size: 1rem; /* Smaller title on mobile */
+      margin-bottom: 0.75rem;
+    }
+  
+    .featured-grid {
+      gap: 1rem; /* Reduced gap for tighter layout */
+      justify-content: center; /* Center items on mobile */
+    }
+  
+    .loading-text,
+    .no-auctions {
+      font-size: 0.875rem; /* Slightly smaller text */
+      padding: 0.75rem;
+    }
+  }
+  
+  @media (min-width: 481px) and (max-width: 767px) {
+    .featured-auctions {
+      width: 50%; /* Slightly wider than desktop but not full-width */
+      padding: 1rem;
+    }
+  
+    .featured-title {
+      font-size: 1.25rem;
+    }
+  
+    .featured-grid {
+      gap: 1.25rem;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .featured-title {
+      font-size: 2rem;
+    }
+  
+    .featured-auctions {
+      padding: 1.5rem;
+    }
+  
+    .featured-grid {
+      gap: 2rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .featured-title {
+      font-size: 2.25rem;
+    }
+  }
