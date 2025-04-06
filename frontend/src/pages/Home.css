@@ -1,204 +1,245 @@
 .home-container {
-    width: 100%;
-    margin: 0;
-    padding: 6rem 3rem;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
+  width: 100%;
+  margin: 0;
+  padding: 6rem 3rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
+}
+
+.tagline {
+  color: #d6482b;
+  font-weight: 600;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  animation: fadeIn 1s ease-in;
+}
+
+.main-title {
+  color: #1a1a1a;
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+  animation: slideInLeft 0.8s ease-out;
+}
+
+.highlight-title {
+  color: #d6482b;
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  animation: slideInRight 0.8s ease-out;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.sign-up-btn {
+  background: #d6482b;
+  font-weight: 600;
+  color: #ffffff;
+  padding: 0.75rem 2.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(214, 72, 43, 0.3);
+}
+
+.sign-up-btn:hover {
+  background: #b8381e;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(214, 72, 43, 0.5);
+}
+
+.login-btn {
+  color: #d6482b;
+  background: transparent;
+  border: 2px solid #d6482b;
+  padding: 0.75rem 2.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+  background: #d6482b;
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(214, 72, 43, 0.3);
+}
+
+.how-it-works {
+  margin-top: 5rem;
+  padding: 2rem 0;
+}
+
+.section-title {
+  color: #1a1a1a;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background: #d6482b;
+}
+
+.how-it-works-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+.how-it-works-card {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 320px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.how-it-works-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.how-it-works-card h5 {
+  font-weight: 700;
+  color: #1a1a1a;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.how-it-works-card p {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+.how-it-works-card {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 320px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.how-it-works-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  background: #d6482b; /* Change background color on hover */
+  color: white; /* Change text color on hover */
+}
+
+.how-it-works-card:hover h5,
+.how-it-works-card:hover p {
+  color: white; /* Ensures text is visible on hover */
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-  
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .home-container {
+    padding: 4rem 1.5rem;
+  }
+
   .tagline {
-    color: #d6482b;
-    font-weight: 600;
-    font-size: 1.5rem;
-    letter-spacing: 1px;
-    margin-bottom: 2rem;
-    text-transform: uppercase;
-    animation: fadeIn 1s ease-in;
-  }
-  
-  .main-title {
-    color: #1a1a1a;
-    font-size: 3.5rem;
-    font-weight: 800;
-    margin-bottom: 0.75rem;
-    line-height: 1.2;
-    animation: slideInLeft 0.8s ease-out;
-  }
-  
-  .highlight-title {
-    color: #d6482b;
-    font-size: 3.5rem;
-    font-weight: 800;
-    margin-bottom: 1rem;
-    line-height: 1.2;
-    animation: slideInRight 0.8s ease-out;
-  }
-  
-  .auth-buttons {
-    display: flex;
-    gap: 1.5rem;
-    margin-top: 2.5rem;
-  }
-  
-  .sign-up-btn {
-    background: #d6482b;
-    font-weight: 600;
-    color: #ffffff;
-    padding: 0.75rem 2.5rem;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 3px 10px rgba(214, 72, 43, 0.3);
-  }
-  
-  .sign-up-btn:hover {
-    background: #b8381e;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(214, 72, 43, 0.5);
-  }
-  
-  .login-btn {
-    color: #d6482b;
-    background: transparent;
-    border: 2px solid #d6482b;
-    padding: 0.75rem 2.5rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-  }
-  
-  .login-btn:hover {
-    background: #d6482b;
-    color: #ffffff;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(214, 72, 43, 0.3);
-  }
-  
-  .how-it-works {
-    margin-top: 5rem;
-    padding: 2rem 0;
-  }
-  
-  .section-title {
-    color: #1a1a1a;
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
-    text-align: center;
-    position: relative;
-  }
-  
-  .section-title::after {
-    content: "";
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 50px;
-    height: 3px;
-    background: #d6482b;
-  }
-  
-  .how-it-works-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    justify-items: center;
-  }
-  
-  .how-it-works-card {
-    background: #ffffff;
-    padding: 1.5rem;
-    border-radius: 10px;
-    width: 100%;
-    max-width: 320px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-  }
-  
-  .how-it-works-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-  }
-  
-  .how-it-works-card h5 {
-    font-weight: 700;
-    color: #1a1a1a;
     font-size: 1.25rem;
-    margin-bottom: 0.5rem;
   }
-  
-  .how-it-works-card p {
+
+  .main-title,
+  .highlight-title {
+    font-size: 2.5rem;
+  }
+
+  .auth-buttons {
+    gap: 1rem;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sign-up-btn,
+  .login-btn {
+    padding: 0.6rem 2rem;
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .how-it-works {
+    margin-top: 3rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-title,
+  .highlight-title {
+    font-size: 2rem;
+  }
+
+  .tagline {
     font-size: 1rem;
-    color: #666;
-    line-height: 1.5;
   }
-  
-  /* Animations */
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+
+  .section-title {
+    font-size: 1.5rem;
   }
-  
-  @keyframes slideInLeft {
-    from { opacity: 0; transform: translateX(-50px); }
-    to { opacity: 1; transform: translateX(0); }
-  }
-  
-  @keyframes slideInRight {
-    from { opacity: 0; transform: translateX(50px); }
-    to { opacity: 1; transform: translateX(0); }
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .home-container {
-      padding: 4rem 1.5rem;
-    }
-  
-    .tagline {
-      font-size: 1.25rem;
-    }
-  
-    .main-title, .highlight-title {
-      font-size: 2.5rem;
-    }
-  
-    .auth-buttons {
-      gap: 1rem;
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .sign-up-btn, .login-btn {
-      padding: 0.6rem 2rem;
-      width: 100%;
-      max-width: 200px;
-    }
-  
-    .how-it-works {
-      margin-top: 3rem;
-    }
-  
-    .section-title {
-      font-size: 1.75rem;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .main-title, .highlight-title {
-      font-size: 2rem;
-    }
-  
-    .tagline {
-      font-size: 1rem;
-    }
-  
-    .section-title {
-      font-size: 1.5rem;
-    }
-  }
+}
