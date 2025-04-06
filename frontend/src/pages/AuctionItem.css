@@ -1,0 +1,167 @@
+.auction-container {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.breadcrumb {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.breadcrumb-link {
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.breadcrumb-link:hover {
+  color: #d6482b;
+}
+
+.breadcrumb-icon {
+  color: gray;
+}
+
+.breadcrumb-text {
+  color: #777;
+}
+
+.auction-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.auction-info {
+  flex: 1;
+}
+
+.auction-header {
+  display: flex;
+  gap: 20px;
+}
+
+.auction-image-container {
+  width: 150px;
+  height: 150px;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auction-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.auction-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.auction-condition span,
+.auction-min-bid span {
+  color: #d6482b;
+}
+
+.auction-description-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.separator {
+  border-top: 1px solid #777;
+}
+
+.auction-description-item {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.bidding-section {
+  flex: 1;
+}
+
+.bidding-header {
+  background: #ccc;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.bidding-container {
+  background: white;
+  padding: 10px;
+  min-height: 300px;
+}
+
+.bidder {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.bidder-info {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.bidder-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.bidder-name {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.rank-0 {
+  color: green;
+}
+.rank-1 {
+  color: blue;
+}
+.rank-2 {
+  color: yellow;
+}
+.rank-3 {
+  color: gray;
+}
+
+.no-bids {
+  text-align: center;
+  color: gray;
+}
+
+.status-image {
+  width: 100%;
+}
+
+.bid-action {
+  background: #d6482b;
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bid-input {
+  width: 60px;
+  padding: 5px;
+}
+
+.bid-button {
+  background: black;
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}

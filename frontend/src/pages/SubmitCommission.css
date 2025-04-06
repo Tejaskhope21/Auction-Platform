@@ -1,0 +1,77 @@
+.commission-container {
+  width: 100%;
+  padding: 5rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  min-height: 100vh;
+}
+
+.commission-form-wrapper {
+  background: white;
+  width: 100%;
+  max-width: 500px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.commission-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.commission-title {
+  color: #d6482b;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.commission-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.commission-input-group label {
+  font-size: 16px;
+  color: #555;
+}
+
+.commission-input-group input,
+.commission-input-group textarea {
+  font-size: 16px;
+  padding: 0.5rem;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  background: transparent;
+  outline: none;
+  transition: border 0.3s;
+}
+
+.commission-input-group input:focus,
+.commission-input-group textarea:focus {
+  border-color: #d6482b;
+}
+
+.commission-submit-btn {
+  background: #d6482b;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.75rem;
+  border-radius: 5px;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.3s;
+  border: none;
+}
+
+.commission-submit-btn:hover {
+  background: #b8381e;
+}

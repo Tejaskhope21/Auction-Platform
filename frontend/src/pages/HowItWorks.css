@@ -1,0 +1,83 @@
+.how-it-works-container {
+  width: 100%;
+  padding: 5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.how-it-works-title {
+  color: #d6482b;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 480px) {
+  .how-it-works-title {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .how-it-works-title {
+    font-size: 4rem;
+  }
+}
+
+.how-it-works-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 800px;
+}
+
+.how-it-works-step {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.how-it-works-step:hover {
+  background: black;
+  color: white;
+}
+
+.how-it-works-icon {
+  background: black;
+  color: white;
+  padding: 1rem;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  transition: all 0.3s ease-in-out;
+}
+
+.how-it-works-step:hover .how-it-works-icon {
+  background: #d6482b;
+}
+
+.how-it-works-step-title {
+  color: #d6482b;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.how-it-works-description {
+  font-size: 1rem;
+  color: #555;
+  text-align: center;
+  transition: color 0.3s ease-in-out;
+}
+
+.how-it-works-step:hover .how-it-works-description {
+  color: white;
+}

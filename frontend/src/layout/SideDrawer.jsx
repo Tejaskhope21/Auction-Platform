@@ -1,24 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "@/store/slices/userSlice";
-import { RiAuctionFill } from "react-icons/ri";
-import { MdLeaderboard, MdDashboard } from "react-icons/md";
-import { IoMdCloseCircleOutline, IoIosCreate } from "react-icons/io";
+import { IoMdCloseCircleOutline } from "react-icons/io";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { FaUserCircle, FaFileInvoiceDollar, FaEye } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
 import "./SideDrawer.css";
 
 const SideDrawer = () => {
   const [show, setShow] = useState(false);
-
   const { isAuthenticated, user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   const handleLogout = () => {
     dispatch(logout());
-    setShow(false); // Close menu on logout
+    setTimeout(() => {
+      setShow(false); // Ensure menu closes after logout
+    }, 100);
   };
+
+  // Close menu when authentication state changes (for logout case)
+  useEffect(() => {
+    if (!isAuthenticated) {
+      setShow(false);
+    }
+  }, [isAuthenticated]);
 
   return (
     <nav className="navbar">
@@ -65,14 +71,6 @@ const SideDrawer = () => {
           </>
         )}
 
-        {isAuthenticated && user?.role === "Super Admin" && (
-          <li>
-            <Link to="/dashboard" onClick={() => setShow(false)}>
-              <MdDashboard /> Dashboard
-            </Link>
-          </li>
-        )}
-
         {isAuthenticated && (
           <li>
             <Link to="/me" onClick={() => setShow(false)}>
@@ -83,7 +81,7 @@ const SideDrawer = () => {
 
         {!isAuthenticated ? (
           <div className="auth-buttons">
-            <Link
+            {/* <Link
               to="/sign-up"
               className="btn sign-up"
               onClick={() => setShow(false)}
@@ -96,7 +94,7 @@ const SideDrawer = () => {
               onClick={() => setShow(false)}
             >
               Login
-            </Link>
+            </Link> */}
           </div>
         ) : (
           <button className="btn logout" onClick={handleLogout}>

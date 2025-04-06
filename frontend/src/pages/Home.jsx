@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import FeaturedAuctions from "./home-sub-components/FeaturedAuctions";
-import UpcomingAuctions from "./home-sub-components/UpcomingAuctions";
+import UpcomingAuctions from "./UpcomingAuctions";
 import Leaderboard from "./home-sub-components/Leaderboard";
 import Footer from "@/layout/Footer";
 import "./Home.css";
