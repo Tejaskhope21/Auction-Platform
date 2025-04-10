@@ -5,7 +5,12 @@ import Spinner from "@/custom-components/Spinner";
 import "./UserProfile.css";
 
 const UserProfile = () => {
-  const { user, isAuthenticated, loading } = useSelector((state) => state.user);
+  // Ensure user has a default empty object with paymentMethods to prevent undefined errors
+  const {
+    user = { paymentMethods: {} },
+    isAuthenticated,
+    loading,
+  } = useSelector((state) => state.user);
   const navigateTo = useNavigate();
 
   useEffect(() => {
@@ -21,7 +26,7 @@ const UserProfile = () => {
       ) : (
         <div className="profile-card">
           <img
-            src={user.profileImage?.url}
+            src={user.profileImage?.url || "/default-avatar.png"}
             alt="Profile"
             className="profile-img"
           />
@@ -30,29 +35,49 @@ const UserProfile = () => {
             <div className="details-grid">
               <div>
                 <label>Username</label>
-                <input type="text" defaultValue={user.userName} disabled />
+                <input
+                  type="text"
+                  defaultValue={user?.username || "N/A"}
+                  disabled
+                />
               </div>
               <div>
                 <label>Email</label>
-                <input type="text" defaultValue={user.email} disabled />
+                <input
+                  type="text"
+                  defaultValue={user?.email || "N/A"}
+                  disabled
+                />
               </div>
               <div>
                 <label>Phone</label>
-                <input type="number" defaultValue={user.phone} disabled />
+                <input
+                  type="number"
+                  defaultValue={user?.phone || "N/A"}
+                  disabled
+                />
               </div>
               <div>
                 <label>Address</label>
-                <input type="text" defaultValue={user.address} disabled />
+                <input
+                  type="text"
+                  defaultValue={user?.address || "N/A"}
+                  disabled
+                />
               </div>
               <div>
                 <label>Role</label>
-                <input type="text" defaultValue={user.role} disabled />
+                <input
+                  type="text"
+                  defaultValue={user?.role || "N/A"}
+                  disabled
+                />
               </div>
               <div>
                 <label>Joined On</label>
                 <input
                   type="text"
-                  defaultValue={user.createdAt?.substring(0, 10)}
+                  defaultValue={user?.createdAt?.substring(0, 10) || "N/A"}
                   disabled
                 />
               </div>
@@ -67,7 +92,9 @@ const UserProfile = () => {
                   <label>Bank Name</label>
                   <input
                     type="text"
-                    defaultValue={user.paymentMethods.bankTransfer.bankName}
+                    defaultValue={
+                      user.paymentMethods?.bankTransfer?.bankName || "N/A"
+                    }
                     disabled
                   />
                 </div>
@@ -76,7 +103,8 @@ const UserProfile = () => {
                   <input
                     type="text"
                     defaultValue={
-                      user.paymentMethods.bankTransfer.bankAccountNumber
+                      user.paymentMethods?.bankTransfer?.bankAccountNumber ||
+                      "N/A"
                     }
                     disabled
                   />
@@ -86,7 +114,8 @@ const UserProfile = () => {
                   <input
                     type="text"
                     defaultValue={
-                      user.paymentMethods.bankTransfer.bankAccountName
+                      user.paymentMethods?.bankTransfer?.bankAccountName ||
+                      "N/A"
                     }
                     disabled
                   />
@@ -96,7 +125,8 @@ const UserProfile = () => {
                   <input
                     type="text"
                     defaultValue={
-                      user.paymentMethods.easypaisa.easypaisaAccountNumber
+                      user.paymentMethods?.easypaisa?.easypaisaAccountNumber ||
+                      "N/A"
                     }
                     disabled
                   />
@@ -105,7 +135,9 @@ const UserProfile = () => {
                   <label>Paypal Email</label>
                   <input
                     type="text"
-                    defaultValue={user.paymentMethods.paypal.paypalEmail}
+                    defaultValue={
+                      user.paymentMethods?.paypal?.paypalEmail || "N/A"
+                    }
                     disabled
                   />
                 </div>
@@ -121,7 +153,7 @@ const UserProfile = () => {
                   <label>Unpaid Commissions</label>
                   <input
                     type="text"
-                    defaultValue={user.unpaidCommission}
+                    defaultValue={user?.unpaidCommission || "N/A"}
                     disabled
                   />
                 </div>
@@ -132,7 +164,7 @@ const UserProfile = () => {
                     <label>Auctions Won</label>
                     <input
                       type="text"
-                      defaultValue={user.auctionsWon}
+                      defaultValue={user?.auctionsWon || "0"}
                       disabled
                     />
                   </div>
@@ -140,7 +172,7 @@ const UserProfile = () => {
                     <label>Money Spent</label>
                     <input
                       type="text"
-                      defaultValue={user.moneySpent}
+                      defaultValue={user?.moneySpent || "0"}
                       disabled
                     />
                   </div>

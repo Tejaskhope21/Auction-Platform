@@ -1,0 +1,191 @@
+.leaderboard-container {
+    min-height: 100vh;
+    background-color: #f7f8fa;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .leaderboard-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .leaderboard-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #7f8c8d;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0;
+  }
+  
+  .leaderboard-highlight {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2c3e50;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0.5rem 0 0;
+  }
+  
+  .leaderboard-table-container {
+    max-width: 1000px;
+    width: 100%;
+    overflow-x: auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .leaderboard-table th,
+  .leaderboard-table td {
+    padding: 1rem;
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  .leaderboard-table thead tr {
+    background-color: #3498db;
+    color: #fff;
+  }
+  
+  .leaderboard-table th {
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .leaderboard-table tbody tr {
+    border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.2s ease;
+  }
+  
+  .leaderboard-table tbody tr:hover {
+    background-color: #f1f3f5;
+  }
+  
+  .leaderboard-profile {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .leaderboard-rank {
+    position: absolute;
+    left: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #7f8c8d;
+    background-color: #ecf0f1;
+    width: 1.5rem;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    border-radius: 50%;
+  }
+  
+  .leaderboard-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #3498db;
+  }
+  
+  .leaderboard-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background-color: #3498db;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .leaderboard-link:hover {
+    background-color: #2980b9;
+  }
+  
+  @media (max-width: 768px) {
+    .leaderboard-container {
+      padding: 1rem;
+    }
+  
+    .leaderboard-title {
+      font-size: 1.2rem;
+    }
+  
+    .leaderboard-highlight {
+      font-size: 1.6rem;
+    }
+  
+    .leaderboard-table th,
+    .leaderboard-table td {
+      padding: 0.75rem;
+      font-size: 0.9rem;
+    }
+  
+    .leaderboard-image {
+      width: 24px;
+      height: 24px;
+    }
+  
+    .leaderboard-rank {
+      font-size: 0.8rem;
+      width: 1.2rem;
+      height: 1.2rem;
+      line-height: 1.2rem;
+    }
+  
+    .leaderboard-link {
+      padding: 0.6rem 1.2rem;
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .leaderboard-title {
+      font-size: 1rem;
+    }
+  
+    .leaderboard-highlight {
+      font-size: 1.4rem;
+    }
+  
+    .leaderboard-table th,
+    .leaderboard-table td {
+      padding: 0.5rem;
+      font-size: 0.85rem;
+    }
+  
+    .leaderboard-profile {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+  
+    .leaderboard-rank {
+      position: static;
+      transform: none;
+    }
+  
+    .leaderboard-link {
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+    }
+  }

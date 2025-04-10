@@ -36,7 +36,7 @@ const Leaderboard = () => {
                         className="profile-img"
                       />
                     </td>
-                    <td>{element.userName}</td>
+                    <td>{element.username}</td>
                     <td>{element.moneySpent}</td>
                     <td>{element.auctionsWon}</td>
                   </tr>

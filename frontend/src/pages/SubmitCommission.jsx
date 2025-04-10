@@ -2,6 +2,7 @@ import { postCommissionProof } from "@/store/slices/commissionSlice";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./SubmitCommission.css";
+import { Colors } from "chart.js";
 
 const SubmitCommission = () => {
   const [proof, setProof] = useState("");
@@ -29,6 +30,10 @@ const SubmitCommission = () => {
       <div className="commission-form-wrapper">
         <form className="commission-form" onSubmit={handlePaymentProof}>
           <h3 className="commission-title">Upload Payment Proof</h3>
+          <p>
+            <span className="commission-title">Note: </span> You can see your
+            commission in profile
+          </p>
 
           <div className="commission-input-group">
             <label>Amount</label>

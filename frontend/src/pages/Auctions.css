@@ -1,52 +1,74 @@
+/* Auctions.css */
+
+/* Container for the entire auctions section */
 .auctions-container {
-    width: 50%;
-    padding: 5rem 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: start;
-    min-height: 100vh;
+  min-height: 100vh;
+  background-color: #f4f4f9;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Content wrapper for auctions */
+.auctions-content {
+  max-width: 300px;
+  width: 100%;
+}
+
+/* Section for auctions */
+.auctions-section {
+  text-align: center;
+}
+
+/* Title styling */
+.auctions-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Grid layout for auction cards */
+.auctions-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  justify-items: center;
+}
+
+/* Spinner styling (assuming Spinner is a centered loading animation) */
+.auctions-container .spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .auctions-container {
+    padding: 1rem;
   }
-  
-  .auctions-content {
-    width: 100%;
-    padding: 1rem 5%;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .auctions-section {
-    margin-top: 2rem;
-  }
-  
+
   .auctions-title {
-    color: #d6482b;
     font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    text-align: left;
   }
-  
-  @media (min-width: 480px) {
-    .auctions-title {
-      font-size: 3rem;
-    }
-  }
-  
-  @media (min-width: 768px) {
-    .auctions-title {
-      font-size: 4rem;
-    }
-  }
-  
-  @media (min-width: 1024px) {
-    .auctions-title {
-      font-size: 5rem;
-    }
-  }
-  
+
   .auctions-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
   }
-  
+}
+
+@media (max-width: 480px) {
+  .auctions-title {
+    font-size: 1.5rem;
+  }
+
+  .auctions-list {
+    grid-template-columns: 1fr;
+  }
+}
