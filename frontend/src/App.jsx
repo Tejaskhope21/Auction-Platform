@@ -21,7 +21,7 @@ import ViewAuctionDetails from "./pages/ViewAuctionDetails";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Contact from "./pages/Contact";
 import UserProfile from "./pages/UserProfile";
-
+import SuperAdminDashboard from "./pages/SuperAdminDashboard";
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -48,6 +48,7 @@ const App = () => {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/me" element={<UserProfile />} />
+        <Route path="/SuperAdminDashboard" element={<SuperAdminDashboard />} />
       </Routes>
       <ToastContainer position="top-right" />
     </Router>

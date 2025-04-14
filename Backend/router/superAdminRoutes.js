@@ -26,12 +26,6 @@ router.get(
   getAllPaymentProofs
 );
 
-router.get(
-  "/paymentproof/:id",
-  isAuthenticated,
-  isAuthorized("Super Admin"),
-  getPaymentProofDetail
-);
 
 router.put(
   "/paymentproof/status/update/:id",

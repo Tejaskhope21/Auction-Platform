@@ -71,6 +71,16 @@ const SideDrawer = () => {
           </>
         )}
 
+        {isAuthenticated && user?.role === "Super Admin" && (
+          <>
+            <li>
+              <Link to="/SuperAdminDashboard" onClick={() => setShow(false)}>
+                Super Admin
+              </Link>
+            </li>
+          </>
+        )}
+
         {isAuthenticated && (
           <li>
             <Link to="/me" onClick={() => setShow(false)}>
@@ -81,6 +91,7 @@ const SideDrawer = () => {
 
         {!isAuthenticated ? (
           <div className="auth-buttons">
+            {/* Uncomment the below if needed for unauthenticated users */}
             {/* <Link
               to="/sign-up"
               className="btn sign-up"

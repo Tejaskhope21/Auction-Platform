@@ -1,0 +1,51 @@
+/* PaymentProofs.css */
+.payment-proof-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .payment-proof-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .payment-proof-list {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+    max-width: 800px;
+  }
+  
+  .payment-proof-item {
+    background-color: #f8f8f8;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .payment-proof-item span {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: #555;
+  }
+  
+  .payment-proof-item .user-info {
+    font-weight: bold;
+  }
+  
+  .payment-proof-item .amount {
+    color: #4caf50;
+  }
+  
+  .payment-proof-item .status {
+    color: #ff9800;
+    font-weight: bold;
+  }
+  
