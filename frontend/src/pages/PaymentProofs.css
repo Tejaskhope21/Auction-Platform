@@ -1,51 +1,161 @@
-/* PaymentProofs.css */
 .payment-proof-container {
-    display: flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+}
+
+/* Section title */
+.payment-proof-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+/* Main layout: list on the left, details on the right */
+.payment-proof-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1200px;
+  gap: 20px;
+}
+
+/* List */
+.payment-proof-list {
+  list-style-type: none;
+  padding: 0;
+  width: 65%;
+}
+
+.payment-proof-item {
+  background-color: #f8f8f8;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.payment-proof-item span {
+  font-size: 1rem;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.payment-proof-item .amount {
+  color: #4caf50;
+}
+
+.payment-proof-item .status {
+  color: #ff9800;
+  font-weight: bold;
+}
+
+.update-controls {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.update-controls input,
+.update-controls select {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  min-width: 100px;
+  flex: 1;
+}
+
+.update-controls button {
+  padding: 6px 12px;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.update-controls button:hover {
+  background-color: #1565c0;
+}
+
+/* Detail Viewer */
+.proof-details {
+  width: 35%;
+  border: 1px solid #ccc;
+  background: #fafafa;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.proof-details h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.proof-details p {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.proof-details a {
+  color: #1976d2;
+  text-decoration: underline;
+}
+
+.proof-details button {
+  margin-top: 15px;
+  padding: 6px 12px;
+  background-color: #e53935;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.proof-details button:hover {
+  background-color: #c62828;
+}
+
+/* Responsive: stack content vertically */
+@media (max-width: 768px) {
+  .payment-proof-content {
     flex-direction: column;
-    align-items: center;
-    margin-bottom: 2rem;
+    gap: 16px;
   }
-  
-  .payment-proof-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    color: #333;
-  }
-  
-  .payment-proof-list {
-    list-style-type: none;
-    padding: 0;
+
+  .payment-proof-list,
+  .proof-details {
     width: 100%;
-    max-width: 800px;
   }
-  
-  .payment-proof-item {
-    background-color: #f8f8f8;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: flex;
+
+  .update-controls {
     flex-direction: column;
   }
-  
-  .payment-proof-item span {
-    font-size: 1rem;
-    margin-bottom: 5px;
-    color: #555;
+
+  .update-controls input,
+  .update-controls select,
+  .update-controls button {
+    width: 100%;
   }
-  
-  .payment-proof-item .user-info {
-    font-weight: bold;
+
+  .proof-details {
+    order: 2;
   }
-  
-  .payment-proof-item .amount {
-    color: #4caf50;
+
+  .payment-proof-title {
+    text-align: center;
   }
-  
-  .payment-proof-item .status {
-    color: #ff9800;
-    font-weight: bold;
-  }
-  
+}

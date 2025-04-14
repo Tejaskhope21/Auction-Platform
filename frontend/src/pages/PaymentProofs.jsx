@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./PaymentProofs.css"; // Your CSS file
+import "./PaymentProofs.css";
 
 const PaymentProofs = ({ proofs }) => {
   const [usernames, setUsernames] = useState({});
   const [statusAndAmount, setStatusAndAmount] = useState({});
   const [selectedProof, setSelectedProof] = useState(null);
 
-  // Helper to include the auth token
   const getAuthHeaders = () => {
     const token = localStorage.getItem("token");
     return {
@@ -17,24 +16,30 @@ const PaymentProofs = ({ proofs }) => {
     };
   };
 
-  // Fetch usernames
   useEffect(() => {
     const fetchUsernames = async () => {
       const userNamesObj = {};
-
       try {
         const response = await axios.get(
           `http://localhost:5000/api/v1/admin/users/getall`,
           getAuthHeaders()
         );
+        console.log("Users Response:", response.data); // Log the response for debugging
 
-        const users = response.data; // assuming array of users
-        for (const proof of proofs) {
-          const user = users.find((user) => user._id === proof.userId);
-          userNamesObj[proof.userId] = user ? user.username : "Unknown";
+        const { biddersArray, auctioneersArray } = response.data;
+
+        const users = [...(biddersArray || []), ...(auctioneersArray || [])];
+        console.log("Users:", users); // Log users to verify data
+
+        if (Array.isArray(users)) {
+          users.forEach((user) => {
+            userNamesObj[user._id] = user.username;
+          });
+          console.log("Usernames Object:", userNamesObj); // Log the final usernames object
+          setUsernames(userNamesObj);
+        } else {
+          console.error("Unexpected response structure: ", response.data);
         }
-
-        setUsernames(userNamesObj);
       } catch (error) {
         console.error("Error fetching usernames:", error);
       }
@@ -45,7 +50,6 @@ const PaymentProofs = ({ proofs }) => {
     }
   }, [proofs]);
 
-  // Update payment proof status/amount
   const updateProofStatus = async (id, newStatus, newAmount) => {
     try {
       const response = await axios.put(
@@ -53,8 +57,8 @@ const PaymentProofs = ({ proofs }) => {
         { status: newStatus, amount: newAmount },
         getAuthHeaders()
       );
-      console.log(response.data.message);
       alert("Payment proof updated successfully!");
+      console.log(response.data.message);
     } catch (error) {
       console.error(
         "Error updating proof:",
@@ -64,15 +68,14 @@ const PaymentProofs = ({ proofs }) => {
     }
   };
 
-  // Delete payment proof
   const deletePaymentProof = async (id) => {
     try {
       const response = await axios.delete(
         `http://localhost:5000/api/v1/admin/paymentproof/delete/${id}`,
         getAuthHeaders()
       );
-      console.log(response.data.message);
       alert("Payment proof deleted successfully!");
+      console.log(response.data.message);
     } catch (error) {
       console.error(
         "Error deleting proof:",
@@ -82,14 +85,13 @@ const PaymentProofs = ({ proofs }) => {
     }
   };
 
-  // Fetch individual proof details
   const viewProofDetails = async (id) => {
     try {
       const response = await axios.get(
         `http://localhost:5000/api/v1/admin/paymentproof/${id}`,
         getAuthHeaders()
       );
-      setSelectedProof(response.data.paymentProof); // backend returns { paymentProof: {...} }
+      setSelectedProof(response.data.paymentProofDetail);
     } catch (error) {
       console.error(
         "Error fetching proof details:",
@@ -99,7 +101,6 @@ const PaymentProofs = ({ proofs }) => {
     }
   };
 
-  // Handle form changes
   const handleChange = (id, field, value) => {
     setStatusAndAmount((prev) => ({
       ...prev,
@@ -110,85 +111,98 @@ const PaymentProofs = ({ proofs }) => {
   return (
     <div className="payment-proof-container">
       <h2 className="payment-proof-title">Payment Proofs</h2>
-      <ul className="payment-proof-list">
-        {proofs.map((proof) => (
-          <li key={proof._id} className="payment-proof-item">
-            <span className="user-info">User ID: {proof.userId}</span>
-            <span className="username">
-              Username: {usernames[proof.userId] || "Loading..."}
-            </span>
-            <span className="amount">Amount: {proof.amount}</span>
-            <span className="status">Status: {proof.status}</span>
 
-            <div className="update-controls">
-              <input
-                type="text"
-                value={statusAndAmount[proof._id]?.amount || ""}
-                placeholder="Amount"
-                onChange={(e) =>
-                  handleChange(proof._id, "amount", e.target.value)
-                }
-              />
-              <select
-                value={statusAndAmount[proof._id]?.status || ""}
-                onChange={(e) =>
-                  handleChange(proof._id, "status", e.target.value)
-                }
-              >
-                <option value="">Select Status</option>
-                <option value="pending">Pending</option>
-                <option value="approved">Approved</option>
-                <option value="rejected">Rejected</option>
-              </select>
-              <button
-                onClick={() =>
-                  updateProofStatus(
-                    proof._id,
-                    statusAndAmount[proof._id]?.status || proof.status,
-                    statusAndAmount[proof._id]?.amount || proof.amount
-                  )
-                }
-              >
-                Update
-              </button>
-              <button onClick={() => deletePaymentProof(proof._id)}>
-                Delete
-              </button>
-              <button onClick={() => viewProofDetails(proof._id)}>
-                View Details
-              </button>
-            </div>
-          </li>
-        ))}
-      </ul>
+      <div className="payment-proof-content">
+        {/* Payment Proof List (Left side) */}
+        <ul className="payment-proof-list">
+          {proofs.map((proof) => (
+            <li key={proof._id} className="payment-proof-item">
+              <span className="username">
+                Username: {usernames[proof.userId] || "Loading..."}
+              </span>
+              <span className="amount">Amount: {proof.amount}</span>
+              <span className="status">Status: {proof.status}</span>
 
-      {/* Details view */}
-      {selectedProof && (
-        <div className="proof-details">
-          <h3>Payment Proof Details</h3>
-          <p>
-            <strong>ID:</strong> {selectedProof._id}
-          </p>
-          <p>
-            <strong>User ID:</strong> {selectedProof.userId}
-          </p>
-          <p>
-            <strong>Amount:</strong> {selectedProof.amount}
-          </p>
-          <p>
-            <strong>Status:</strong> {selectedProof.status}
-          </p>
-          <p>
-            <strong>Created At:</strong>{" "}
-            {new Date(selectedProof.createdAt).toLocaleString()}
-          </p>
-          <p>
-            <strong>Updated At:</strong>{" "}
-            {new Date(selectedProof.updatedAt).toLocaleString()}
-          </p>
-          <button onClick={() => setSelectedProof(null)}>Close</button>
-        </div>
-      )}
+              <div className="update-controls">
+                <input
+                  type="text"
+                  value={statusAndAmount[proof._id]?.amount || ""}
+                  placeholder="Amount"
+                  onChange={(e) =>
+                    handleChange(proof._id, "amount", e.target.value)
+                  }
+                />
+                <select
+                  value={statusAndAmount[proof._id]?.status || proof.status}
+                  onChange={(e) =>
+                    handleChange(proof._id, "status", e.target.value)
+                  }
+                >
+                  <option value="">Select Status</option>
+                  <option value="Pending">Pending</option>
+                  <option value="Approved">Approved</option>
+                  <option value="Rejected">Rejected</option>
+                  <option value="Settled">Settled</option>
+                </select>
+                <button
+                  onClick={() =>
+                    updateProofStatus(
+                      proof._id,
+                      statusAndAmount[proof._id]?.status || proof.status,
+                      statusAndAmount[proof._id]?.amount || proof.amount
+                    )
+                  }
+                >
+                  Update
+                </button>
+                <button onClick={() => deletePaymentProof(proof._id)}>
+                  Delete
+                </button>
+                <button onClick={() => viewProofDetails(proof._id)}>
+                  View Details
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+
+        {/* Detail Viewer (Right side) */}
+        {selectedProof && (
+          <div className="proof-details">
+            <h3>Payment Proof Details</h3>
+            <p>
+              <strong>ID:</strong> {selectedProof._id}
+            </p>
+            <p>
+              <strong>Amount:</strong> {selectedProof.amount}
+            </p>
+            <p>
+              <strong>Status:</strong> {selectedProof.status}
+            </p>
+            <p>
+              <strong>Created At:</strong>{" "}
+              {new Date(selectedProof.createdAt).toLocaleString()}
+            </p>
+            <p>
+              <strong>Updated At:</strong>{" "}
+              {new Date(selectedProof.updatedAt).toLocaleString()}
+            </p>
+            {selectedProof.proofUrl && (
+              <p>
+                <strong>Proof Image:</strong>{" "}
+                <a
+                  href={selectedProof.proofUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  View Image
+                </a>
+              </p>
+            )}
+            <button onClick={() => setSelectedProof(null)}>Close</button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

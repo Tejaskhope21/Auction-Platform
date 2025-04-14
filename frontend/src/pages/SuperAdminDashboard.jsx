@@ -10,6 +10,8 @@ const SuperAdminDashboard = () => {
   const [biddersArray, setBiddersArray] = useState([]);
   const [auctioneersArray, setAuctioneersArray] = useState([]);
   const [revenue, setRevenue] = useState([]);
+  const [loading, setLoading] = useState(true); // Track loading state
+  const [error, setError] = useState(null); // Track error state
 
   useEffect(() => {
     const fetchDashboardData = async () => {
@@ -18,7 +20,7 @@ const SuperAdminDashboard = () => {
 
         // Check if token is present
         if (!token) {
-          console.error("Authentication token is missing.");
+          setError("Authentication token is missing.");
           alert("Authentication token is missing.");
           return;
         }
@@ -30,6 +32,8 @@ const SuperAdminDashboard = () => {
             Authorization: `Bearer ${token}`,
           },
         };
+
+        setLoading(true); // Set loading state to true before fetching data
 
         // Fetch data using Promise.all
         const [proofRes, usersRes, revenueRes] = await Promise.all([
@@ -50,22 +54,34 @@ const SuperAdminDashboard = () => {
         setBiddersArray(usersRes.data.biddersArray);
         setAuctioneersArray(usersRes.data.auctioneersArray);
         setRevenue(revenueRes.data.totalMonthlyRevenue);
+        setLoading(false); // Set loading to false after data is fetched
       } catch (error) {
         // Log the full error response to debug
         console.error(
           "Error fetching dashboard data:",
           error.response?.data || error.message
         );
-        alert("Failed to load data. Please try again later.");
+        setError("Failed to load data. Please try again later.");
+        setLoading(false); // Set loading to false even in case of error
       }
     };
 
     fetchDashboardData();
   }, []);
 
+  if (loading) {
+    return <div>Loading data, please wait...</div>; // Loading indicator
+  }
+
+  if (error) {
+    return <div>{error}</div>; // Error message
+  }
+
   return (
     <div className="dashboard-content">
       <h1>Super Admin Dashboard</h1>
+
+      {/* Render charts and payment proofs only when data is available */}
       <UsersChart
         biddersArray={biddersArray}
         auctioneersArray={auctioneersArray}
