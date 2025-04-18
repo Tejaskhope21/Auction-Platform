@@ -23,12 +23,13 @@ export const deleteAuctionItem = catchAsyncErrors(async (req, res, next) => {
 });
 
 export const getAllPaymentProofs = catchAsyncErrors(async (req, res, next) => {
-  let paymentProofs = await PaymentProof.find();
+  const paymentProofs = await PaymentProof.find().populate("userId", "username");
   res.status(200).json({
     success: true,
     paymentProofs,
   });
 });
+
 
 export const getPaymentProofDetail = catchAsyncErrors(
   async (req, res, next) => {

@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import "./PaymentProofs.css";
 
 const PaymentProofs = ({ proofs }) => {
-  const [usernames, setUsernames] = useState({});
   const [statusAndAmount, setStatusAndAmount] = useState({});
   const [selectedProof, setSelectedProof] = useState(null);
+  const [showImage, setShowImage] = useState(false);
 
   const getAuthHeaders = () => {
     const token = localStorage.getItem("token");
@@ -16,49 +16,14 @@ const PaymentProofs = ({ proofs }) => {
     };
   };
 
-  useEffect(() => {
-    const fetchUsernames = async () => {
-      const userNamesObj = {};
-      try {
-        const response = await axios.get(
-          `http://localhost:5000/api/v1/admin/users/getall`,
-          getAuthHeaders()
-        );
-        console.log("Users Response:", response.data); // Log the response for debugging
-
-        const { biddersArray, auctioneersArray } = response.data;
-
-        const users = [...(biddersArray || []), ...(auctioneersArray || [])];
-        console.log("Users:", users); // Log users to verify data
-
-        if (Array.isArray(users)) {
-          users.forEach((user) => {
-            userNamesObj[user._id] = user.username;
-          });
-          console.log("Usernames Object:", userNamesObj); // Log the final usernames object
-          setUsernames(userNamesObj);
-        } else {
-          console.error("Unexpected response structure: ", response.data);
-        }
-      } catch (error) {
-        console.error("Error fetching usernames:", error);
-      }
-    };
-
-    if (proofs && proofs.length > 0) {
-      fetchUsernames();
-    }
-  }, [proofs]);
-
   const updateProofStatus = async (id, newStatus, newAmount) => {
     try {
-      const response = await axios.put(
+      await axios.put(
         `http://localhost:5000/api/v1/admin/paymentproof/status/update/${id}`,
         { status: newStatus, amount: newAmount },
         getAuthHeaders()
       );
       alert("Payment proof updated successfully!");
-      console.log(response.data.message);
     } catch (error) {
       console.error(
         "Error updating proof:",
@@ -70,12 +35,11 @@ const PaymentProofs = ({ proofs }) => {
 
   const deletePaymentProof = async (id) => {
     try {
-      const response = await axios.delete(
+      await axios.delete(
         `http://localhost:5000/api/v1/admin/paymentproof/delete/${id}`,
         getAuthHeaders()
       );
       alert("Payment proof deleted successfully!");
-      console.log(response.data.message);
     } catch (error) {
       console.error(
         "Error deleting proof:",
@@ -88,10 +52,12 @@ const PaymentProofs = ({ proofs }) => {
   const viewProofDetails = async (id) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/v1/admin/paymentproof/${id}`,
+        `http://localhost:5000/api/v1/admin/paymentproofs/${id}`,
         getAuthHeaders()
       );
-      setSelectedProof(response.data.paymentProofDetail);
+      const proofDetail = response.data.paymentProofDetail;
+      console.log("Selected Proof Data:", proofDetail); // Debugging log
+      setSelectedProof(proofDetail);
     } catch (error) {
       console.error(
         "Error fetching proof details:",
@@ -108,24 +74,46 @@ const PaymentProofs = ({ proofs }) => {
     }));
   };
 
+  const formatDate = (dateString) => {
+    if (!dateString) return "N/A";
+    try {
+      return new Date(dateString).toLocaleString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+    } catch {
+      return "N/A";
+    }
+  };
+
+  const handleShowImage = () => {
+    if (selectedProof?.proof?.url) {
+      setShowImage(true);
+    }
+  };
+
+  const handleCloseImage = () => {
+    setShowImage(false);
+  };
+
   return (
     <div className="payment-proof-container">
       <h2 className="payment-proof-title">Payment Proofs</h2>
 
       <div className="payment-proof-content">
-        {/* Payment Proof List (Left side) */}
         <ul className="payment-proof-list">
           {proofs.map((proof) => (
             <li key={proof._id} className="payment-proof-item">
-              <span className="username">
-                Username: {usernames[proof.userId] || "Loading..."}
-              </span>
-              <span className="amount">Amount: {proof.amount}</span>
+              <span className="proof-id">Proof ID: {proof._id}</span>
+              <span className="amount">Amount: {proof.amount || "N/A"}</span>
               <span className="status">Status: {proof.status}</span>
 
               <div className="update-controls">
                 <input
-                  type="text"
+                  type="number"
                   value={statusAndAmount[proof._id]?.amount || ""}
                   placeholder="Amount"
                   onChange={(e) =>
@@ -166,7 +154,6 @@ const PaymentProofs = ({ proofs }) => {
           ))}
         </ul>
 
-        {/* Detail Viewer (Right side) */}
         {selectedProof && (
           <div className="proof-details">
             <h3>Payment Proof Details</h3>
@@ -174,32 +161,42 @@ const PaymentProofs = ({ proofs }) => {
               <strong>ID:</strong> {selectedProof._id}
             </p>
             <p>
-              <strong>Amount:</strong> {selectedProof.amount}
+              <strong>Amount:</strong> {selectedProof.amount || "N/A"}
             </p>
             <p>
               <strong>Status:</strong> {selectedProof.status}
             </p>
             <p>
-              <strong>Created At:</strong>{" "}
-              {new Date(selectedProof.createdAt).toLocaleString()}
+              <strong>Uploaded At:</strong>{" "}
+              {formatDate(selectedProof.uploadedAt)}
             </p>
             <p>
-              <strong>Updated At:</strong>{" "}
-              {new Date(selectedProof.updatedAt).toLocaleString()}
+              <strong>Comment:</strong> {selectedProof.comment || "N/A"}
             </p>
-            {selectedProof.proofUrl && (
-              <p>
-                <strong>Proof Image:</strong>{" "}
-                <a
-                  href={selectedProof.proofUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  View Image
-                </a>
-              </p>
+
+            {selectedProof.proof?.url && selectedProof.proof.url.trim() ? (
+              <div className="screenshot-container">
+                <strong>Payment Screenshot:</strong>
+                <button onClick={handleShowImage}>View Screenshot</button>
+              </div>
+            ) : (
+              <p>No screenshot available.</p>
             )}
+
             <button onClick={() => setSelectedProof(null)}>Close</button>
+          </div>
+        )}
+
+        {showImage && selectedProof?.proof?.url && (
+          <div className="modal-overlay">
+            <div className="modal-content">
+              <img
+                src={selectedProof.proof.url}
+                alt="Payment Screenshot"
+                onError={() => setShowImage(false)}
+              />
+              <button onClick={handleCloseImage}>Close</button>
+            </div>
           </div>
         )}
       </div>

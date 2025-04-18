@@ -27,6 +27,9 @@ router.get(
 );
 
 
+router.get("/paymentproofs/:id", getPaymentProofDetail);
+
+
 router.put(
   "/paymentproof/status/update/:id",
   isAuthenticated,
