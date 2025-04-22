@@ -175,7 +175,7 @@ const PaymentProofs = ({ proofs }) => {
             </p>
 
             {selectedProof.proof?.url && selectedProof.proof.url.trim() ? (
-              <div className="screenshot-container">
+              <div className="btn btn-info">
                 <strong>Payment Screenshot:</strong>
                 <button onClick={handleShowImage}>View Screenshot</button>
               </div>

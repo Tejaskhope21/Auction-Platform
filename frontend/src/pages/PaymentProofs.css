@@ -1,3 +1,4 @@
+/* Base styles */
 .payment-proof-container {
   padding: 20px;
 }
@@ -5,11 +6,13 @@
 .payment-proof-title {
   text-align: center;
   margin-bottom: 20px;
+  font-size: 1.5rem;
 }
 
 .payment-proof-content {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 15px;
 }
 
 .payment-proof-list {
@@ -22,6 +25,7 @@
   padding: 15px;
   margin-bottom: 10px;
   border-radius: 5px;
+  background-color: #f9f9f9;
 }
 
 .proof-id,
@@ -29,32 +33,40 @@
 .status {
   display: block;
   margin-bottom: 5px;
+  font-size: 1rem;
 }
 
+/* Controls */
 .update-controls {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   align-items: center;
+  margin-top: 10px;
 }
 
 .update-controls input,
 .update-controls select {
-  padding: 5px;
+  padding: 8px;
   border-radius: 4px;
   border: 1px solid #ccc;
+  flex: 1 1 40px;
+  font-size: 1rem;
 }
 
 .update-controls button {
-  padding: 5px 10px;
-  background: #007bff;
+  padding: 8px 16px;
+  background: #D6482B;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .update-controls button:hover {
-  background: #0056b3;
+  background: #202020;
 }
 
 .proof-details {
@@ -64,10 +76,13 @@
   border-radius: 5px;
 }
 
+/* Screenshot section */
 .screenshot-container {
   margin-top: 10px;
+  overflow-x: auto;
 }
 
+/* Modal */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -110,4 +125,44 @@
 
 .modal-content button:hover {
   background: #0056b3;
+}
+
+/* === Media Queries for Responsiveness === */
+@media (max-width: 768px) {
+  .update-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .update-controls input,
+  .update-controls select,
+  .update-controls button {
+    width: 100%;
+  }
+
+  .proof-id,
+  .amount,
+  .status {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .payment-proof-title {
+    font-size: 1.25rem;
+  }
+
+  .proof-id,
+  .amount,
+  .status {
+    font-size: 0.9rem;
+  }
+
+  .modal-content {
+    padding: 15px;
+  }
+
+  .modal-content button {
+    padding: 6px 12px;
+  }
 }
