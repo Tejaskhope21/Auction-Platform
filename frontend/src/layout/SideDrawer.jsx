@@ -15,11 +15,10 @@ const SideDrawer = () => {
   const handleLogout = () => {
     dispatch(logout());
     setTimeout(() => {
-      setShow(false); // Ensure menu closes after logout
+      setShow(false);
     }, 100);
   };
 
-  // Close menu when authentication state changes (for logout case)
   useEffect(() => {
     if (!isAuthenticated) {
       setShow(false);
