@@ -1,28 +1,34 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaFacebook, FaInstagram } from "react-icons/fa";
+import { FaLinkedin, FaLink } from "react-icons/fa";
 import { SiGooglesearchconsole } from "react-icons/si";
 import { BsFillInfoSquareFill } from "react-icons/bs";
-import "./Footer.css"; // Import the CSS file
+import "./Footer.css";
 
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-social">
-        <Link to="/" className="social-icon facebook">
-          <FaFacebook />
+        <Link
+          to="https://www.linkedin.com/in/tejas-khope-7124a2287/"
+          className="social-icon facebook"
+        >
+          <FaLinkedin />
         </Link>
-        <Link to="/" className="social-icon instagram">
-          <FaInstagram />
+        <Link
+          to="https://tejasportfolioaboutme.netlify.app/"
+          className="social-icon instagram"
+        >
+          <FaLink />
         </Link>
       </div>
 
       <Link to="/contact" className="footer-link">
         Contact Us
       </Link>
-      <p className="footer-text">&copy; PrimeBid, LLC.</p>
+      <p className="footer-text">&copy; MyBid</p>
       <p className="footer-text">
-        Designed By{" "}
+        Developed By{" "}
         <Link to="/" className="footer-designer">
           TEJASKHOPE
         </Link>

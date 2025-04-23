@@ -56,7 +56,6 @@ const PaymentProofs = ({ proofs }) => {
         getAuthHeaders()
       );
       const proofDetail = response.data.paymentProofDetail;
-      console.log("Selected Proof Data:", proofDetail); // Debugging log
       setSelectedProof(proofDetail);
     } catch (error) {
       console.error(
@@ -108,6 +107,10 @@ const PaymentProofs = ({ proofs }) => {
           {proofs.map((proof) => (
             <li key={proof._id} className="payment-proof-item">
               <span className="proof-id">Proof ID: {proof._id}</span>
+              <span className="username">
+                User: {proof.user?.username || proof.user?._id || "Unknown"}
+              </span>
+
               <span className="amount">Amount: {proof.amount || "N/A"}</span>
               <span className="status">Status: {proof.status}</span>
 
@@ -154,39 +157,43 @@ const PaymentProofs = ({ proofs }) => {
           ))}
         </ul>
 
-        {selectedProof && (
-          <div className="proof-details">
-            <h3>Payment Proof Details</h3>
-            <p>
-              <strong>ID:</strong> {selectedProof._id}
-            </p>
-            <p>
-              <strong>Amount:</strong> {selectedProof.amount || "N/A"}
-            </p>
-            <p>
-              <strong>Status:</strong> {selectedProof.status}
-            </p>
-            <p>
-              <strong>Uploaded At:</strong>{" "}
-              {formatDate(selectedProof.uploadedAt)}
-            </p>
-            <p>
-              <strong>Comment:</strong> {selectedProof.comment || "N/A"}
-            </p>
+        {/* Proof Details Modal */}
+        {selectedProof && !showImage && (
+          <div className="modal-overlay modal-details">
+            <div className="modal-content">
+              <h3>Payment Proof Details</h3>
+              <p>
+                <strong>ID:</strong> {selectedProof._id}
+              </p>
+              <p>
+                <strong>Amount:</strong> {selectedProof.amount || "N/A"}
+              </p>
+              <p>
+                <strong>Status:</strong> {selectedProof.status}
+              </p>
+              <p>
+                <strong>Uploaded At:</strong>{" "}
+                {formatDate(selectedProof.uploadedAt)}
+              </p>
+              <p>
+                <strong>Comment:</strong> {selectedProof.comment || "N/A"}
+              </p>
 
-            {selectedProof.proof?.url && selectedProof.proof.url.trim() ? (
-              <div className="btn btn-info">
-                <strong>Payment Screenshot:</strong>
-                <button onClick={handleShowImage}>View Screenshot</button>
-              </div>
-            ) : (
-              <p>No screenshot available.</p>
-            )}
+              {selectedProof.proof?.url?.trim() ? (
+                <div className="screenshot-container">
+                  <strong>Payment Screenshot:</strong>
+                  <button onClick={handleShowImage}>View Screenshot</button>
+                </div>
+              ) : (
+                <p>No screenshot available.</p>
+              )}
 
-            <button onClick={() => setSelectedProof(null)}>Close</button>
+              <button onClick={() => setSelectedProof(null)}>Close</button>
+            </div>
           </div>
         )}
 
+        {/* Image Modal */}
         {showImage && selectedProof?.proof?.url && (
           <div className="modal-overlay">
             <div className="modal-content">

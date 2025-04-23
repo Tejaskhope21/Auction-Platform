@@ -69,20 +69,7 @@
   background: #202020;
 }
 
-.proof-details {
-  margin-top: 20px;
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-/* Screenshot section */
-.screenshot-container {
-  margin-top: 10px;
-  overflow-x: auto;
-}
-
-/* Modal */
+/* Modal Overlay */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -115,19 +102,23 @@
 
 .modal-content button {
   margin-top: 10px;
-  padding: 8px 16px;
-  background: #007bff;
+  padding: 5px 16px;
+  background: #202020;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
-.modal-content button:hover {
-  background: #0056b3;
+
+
+/* Custom modal for details */
+.modal-details .modal-content {
+  max-width: 600px;
+  padding: 25px;
 }
 
-/* === Media Queries for Responsiveness === */
+/* Responsive styles */
 @media (max-width: 768px) {
   .update-controls {
     flex-direction: column;
@@ -138,31 +129,5 @@
   .update-controls select,
   .update-controls button {
     width: 100%;
-  }
-
-  .proof-id,
-  .amount,
-  .status {
-    font-size: 0.95rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .payment-proof-title {
-    font-size: 1.25rem;
-  }
-
-  .proof-id,
-  .amount,
-  .status {
-    font-size: 0.9rem;
-  }
-
-  .modal-content {
-    padding: 15px;
-  }
-
-  .modal-content button {
-    padding: 6px 12px;
   }
 }

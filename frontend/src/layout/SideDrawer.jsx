@@ -30,7 +30,7 @@ const SideDrawer = () => {
     <nav className="navbar">
       {/* Logo */}
       <Link to="/" className="logo">
-        Prime<span className="highlight">Bid</span>
+        My<span className="highlight">Bid</span>
       </Link>
 
       {/* Hamburger Menu Icon for Mobile */}
