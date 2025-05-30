@@ -53,15 +53,15 @@ An online auction platform where users can register, list items for auction, upl
 
 ## Demo Login Credentials
 
-# Auctioner
+### Auctioner
 -Email: Ironman@gmail.com
 -Password: Ironman@gmail.com
 
-# Bidder
+### Bidder
 -Email: mohram@gmail.com
 -Password: mohram@gmail.com
 
-# SuperAdmin
+### SuperAdmin
 -Email: mufasa@gmail.com
 -Password: mufasa@gmail.com
 
