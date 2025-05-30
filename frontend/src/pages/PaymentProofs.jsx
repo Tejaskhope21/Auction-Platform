@@ -19,7 +19,7 @@ const PaymentProofs = ({ proofs }) => {
   const updateProofStatus = async (id, newStatus, newAmount) => {
     try {
       await axios.put(
-        `http://localhost:5000/api/v1/admin/paymentproof/status/update/${id}`,
+        `https://auction-backend-wr34.onrender.com/api/v1/admin/paymentproof/status/update/${id}`,
         { status: newStatus, amount: newAmount },
         getAuthHeaders()
       );
@@ -36,7 +36,7 @@ const PaymentProofs = ({ proofs }) => {
   const deletePaymentProof = async (id) => {
     try {
       await axios.delete(
-        `http://localhost:5000/api/v1/admin/paymentproof/delete/${id}`,
+        `https://auction-backend-wr34.onrender.com/api/v1/admin/paymentproof/delete/${id}`,
         getAuthHeaders()
       );
       alert("Payment proof deleted successfully!");
@@ -52,7 +52,7 @@ const PaymentProofs = ({ proofs }) => {
   const viewProofDetails = async (id) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/v1/admin/paymentproofs/${id}`,
+        `https://auction-backend-wr34.onrender.com/api/v1/admin/paymentproofs/${id}`,
         getAuthHeaders()
       );
       const proofDetail = response.data.paymentProofDetail;

@@ -38,11 +38,17 @@ const SuperAdminDashboard = () => {
         // Fetch data using Promise.all
         const [proofRes, usersRes, revenueRes] = await Promise.all([
           axios.get(
-            "http://localhost:5000/api/v1/admin/paymentproofs/getall",
+            "https://auction-backend-wr34.onrender.com/api/v1/admin/paymentproofs/getall",
             config
           ),
-          axios.get("http://localhost:5000/api/v1/admin/users/getall", config),
-          axios.get("http://localhost:5000/api/v1/admin/monthlyincome", config),
+          axios.get(
+            "https://auction-backend-wr34.onrender.com/api/v1/admin/users/getall",
+            config
+          ),
+          axios.get(
+            "https://auction-backend-wr34.onrender.com/api/v1/admin/monthlyincome",
+            config
+          ),
         ]);
 
         // Ensure the backend response structure is as expected
