@@ -18,7 +18,7 @@ An online auction platform where users can register, list items for auction, upl
 
 ## Screenshots
 
-Note: The images below are placeholder Base64-encoded image references. Replace them with actual screenshots by converting your images to Base64 or using local files.
+
 
 ### Home Page
 ![alt text](frontend/screenshots/Home.png)
@@ -46,6 +46,25 @@ Note: The images below are placeholder Base64-encoded image references. Replace 
 - MongoDB
 - Cloudinary (for image uploads)
 
+
+### Access the Platform
+- Open your browser and go to:
+- https://mybid-auction.netlify.app
+
+## Demo Login Credentials
+
+-Auctioner
+-Email: Ironman@gmail.com
+-Password: Ironman@gmail.com
+
+-Bidder
+-Email: mohram@gmail.com
+-Password: mohram@gmail.com
+
+-SuperAdmin
+-Email: mufasa@gmail.com
+-Password: mufasa@gmail.com
+
 ---
 
 ## Installation
@@ -55,34 +74,25 @@ Note: The images below are placeholder Base64-encoded image references. Replace 
 ```bash
 
 
-Access the Platform
-Open your browser and go to:
-http://localhost:3000
 
-Demo Login Credentials:
-Email: testuser@example.com
-Password: Test@1234
 
 git clone https://github.com/Tejaskhope21/Auction-Platform.git
 cd Auction-Platform
+
 2. Install Frontend Dependencies
-bash
-Copy
-Edit
+
 cd frontend
 npm install
+
+
 3. Install Backend Dependencies
-bash
-Copy
-Edit
 cd ../backend
 npm install
+
+
 4. Configure Environment Variables
 Create a .env file in the backend directory with the following:
-
 env
-Copy
-Edit
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret_key
 CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
@@ -139,7 +149,7 @@ Rotate Cloudinary API keys periodically.
 
 Use HTTPS in production environments.
 
-Contributing
+ Contributing
 Fork the repository.
 
 Create a new branch:
@@ -152,6 +162,3 @@ Push to your branch:
 git push origin feature/your-feature
 
 Open a pull request.
-
-Ensure your code follows ESLint and Prettier formatting standards.
-
